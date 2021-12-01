@@ -1,0 +1,141 @@
+BottomAppBar(
+            color: Colors.white,
+            elevation: 10.0,
+            child: Row(
+              children: <Widget>[
+                // Bottom that pops up from the bottom of the screen.
+                IconButton(
+                  icon: Icon(Icons.menu),
+                  onPressed: () {
+                    showModalBottomSheet<Null>(
+                      context: context,
+                      builder: (BuildContext context) => openBottomDrawer(),
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SearchPage()));
+                  },
+                ), /*
+                IconButton(
+                  icon: const Icon(Icons.more_vert),
+                  onPressed: () {},
+                ),*/
+              ],
+            )),
+
+
+ //This drawer is opened in modal bottom sheet
+  Widget openBottomDrawer() {
+    return Drawer(elevation: 10.0,
+      child: Column(
+        children:  const <Widget>[
+          Center(heightFactor: 10,
+            child: Text("Made With '❣' and Flutter",
+            style: TextStyle(fontWeight: FontWeight.bold,
+            fontSize: 20
+            ),
+            ),
+          ),
+          Text('Shivam Choudhary',
+            style: TextStyle(fontWeight: FontWeight.bold,
+            fontSize: 18
+            ),
+            ),
+        ],
+      ),
+    );
+  }
+
+
+
+
+
+
+
+
+  /*
+  import 'package:flutter/cupertino.dart';
+  import 'package:flutter/material.dart';
+  import 'package:quicknews/searchpage.dart';
+  import 'about.dart';
+  import 'home.dart';
+
+  class MyBottomBarDemo extends StatefulWidget {
+    const MyBottomBarDemo({Key? key}) : super(key: key);
+
+    @override
+    _MyBottomBarDemoState createState() => _MyBottomBarDemoState();
+  }
+
+  class _MyBottomBarDemoState extends State<MyBottomBarDemo> {
+    final PageController _pageController = PageController();
+    int _selectedIndex = 0;
+    final List<Widget> _screens = [
+       Home(),
+       SearchPage(),
+       AboutPage(),
+    ];
+
+    void _onPageChanged(int index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
+
+    void _itemTapped(int selectedIndex) {
+      _pageController.jumpToPage(selectedIndex);
+    }
+
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+          body: PageView(
+            controller: _pageController,
+            children: _screens,
+            onPageChanged: _onPageChanged,
+            physics: NeverScrollableScrollPhysics(),
+          ),
+          bottomNavigationBar: Container(
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              onTap: _itemTapped,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home,
+                    color: _selectedIndex == 0 ? Colors.blue : Colors.grey,
+                  ),
+                  title: Text('Home', style: TextStyle(
+                    color: _selectedIndex == 0 ? Colors.blue : Colors.grey,
+                  )),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.mail,
+                    color: _selectedIndex == 1 ? Colors.blue : Colors.grey,
+                  ),
+                  title: Text('Messages', style: TextStyle(
+                    color: _selectedIndex == 1 ? Colors.blue : Colors.grey,
+                  )),
+                ),
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.person,
+                      color: _selectedIndex == 2 ? Colors.blue : Colors.grey,
+                    ),
+                  title: Text('profile', style: TextStyle(
+                    color: _selectedIndex == 2 ? Colors.blue : Colors.grey,
+                  )),
+                )
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+  }
+  */

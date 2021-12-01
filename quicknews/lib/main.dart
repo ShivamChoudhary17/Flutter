@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'home.dart';
+import 'package:provider/provider.dart';
+import 'package:quicknews/theme/theme.dart';
+import 'pages/bottomnavigationbar.dart';
+import 'pages/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,14 +13,17 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Home(),
-    );
-  }
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      builder: (context, _) {
+        final themeProvider = Provider.of<ThemeProvider>(context);
+        return MaterialApp(
+          title: 'Flutter Demo',
+          themeMode: themeProvider.themeMode,
+          theme: MyTheme.lightTheme,
+          darkTheme: MyTheme.darkTheme,
+          debugShowCheckedModeBanner: false,
+          home: BottomNavBar(),
+        );
+      });
 }
