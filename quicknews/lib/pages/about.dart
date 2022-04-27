@@ -12,23 +12,24 @@ class AboutPage extends StatefulWidget {
 
 class _AboutPageState extends State<AboutPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  LinearGradient gradient = LinearGradient(
+  LinearGradient gradient = const LinearGradient(
       colors: [Colors.black, Colors.grey, Colors.blueGrey],
       begin: Alignment.bottomRight,
       end: Alignment.topLeft);
   @override
   Widget build(BuildContext context) {
     _launchUrl(String url) async {
-      if (await canLaunch(url))
+      if (await canLaunch(url)) {
         launch(url);
-      else
+      } else {
         _scaffoldKey.currentState!
-            .showSnackBar(SnackBar(content: Text("Error in opening url")));
+            .showSnackBar(SnackBar(content: const Text("Error in opening url")));
+      }
     }
 
     return Container(
       height: 720,
-      padding: EdgeInsets.only(top: 10.0, bottom: 18.0),
+      padding: const EdgeInsets.only(top: 10.0, bottom: 18.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[

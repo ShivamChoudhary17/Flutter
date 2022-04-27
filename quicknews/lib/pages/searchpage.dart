@@ -1,8 +1,11 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:quicknews/model/newsmodel.dart';
 
 import 'bottomnavigationbar.dart';
 import '../category/category.dart';
@@ -28,6 +31,7 @@ class _SearchPageState extends State<SearchPage> {
     "Technology",
   ];
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,16 +45,16 @@ class _SearchPageState extends State<SearchPage> {
         leading: IconButton(
             icon: Icon(Icons.arrow_back,
                 color: Theme.of(context).iconTheme.color),
-            onPressed: () => Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => BottomNavBar()))),
+            onPressed: () => Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const BottomNavBar()))),
         centerTitle: true,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
       ),
       body: Stack(fit: StackFit.loose, children: [
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-          padding: EdgeInsets.symmetric(horizontal: 8),
+          margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           decoration: BoxDecoration(
               color: Colors.grey[400], borderRadius: BorderRadius.circular(24)),
           child: Row(
@@ -58,19 +62,19 @@ class _SearchPageState extends State<SearchPage> {
               GestureDetector(
                 onTap: () {
                   if ((searchController.text.toLowerCase()) == "") {
-                    print("Blank search");
                   } else {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Category(
-                                Query: searchController.text.toLowerCase())));
+                            builder: (context) => Category(Query:
+                                searchController.text
+                                .toLowerCase(),)));
                   }
                 },
                 child: Container(
                   child: Icon(CupertinoIcons.search,
                       color: Theme.of(context).iconTheme.color),
-                  margin: EdgeInsets.fromLTRB(5, 0, 16, 0),
+                  margin: const EdgeInsets.fromLTRB(5, 0, 16, 0),
                 ),
               ),
               Expanded(

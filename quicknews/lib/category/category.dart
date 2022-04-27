@@ -49,6 +49,34 @@ class _CategoryState extends State<Category> {
     });
   }
 
+  searchNews(String query) async {
+    Map element;
+    if (query == "Top News" || query == "india") {
+      url = "http://newsapi"
+          ".org/v2/everything?q=$query&3d44e64c78a94ed58931cec839a62219";
+    } else {
+      url = "http://newsapi"
+          ".org/v2/everything?q=$query&3d44e64c78a94ed58931cec839a62219";
+    }
+//https://newsapi.org/v2/top-headlines?language=en&category=$query&apiKey=3d44e64c78a94ed58931cec839a62219
+    Response response = await get(Uri.parse(url));
+    Map data = jsonDecode(response.body);
+    setState(() {
+      for (element in data["articles"]) {
+        try {
+          NewsModel newsModel = NewsModel();
+          newsModel = NewsModel.fromMap(element);
+          newsModelList.add(newsModel);
+          setState(() {
+            isLoading = false;
+          });
+        } catch (e) {
+          print(e);
+        }
+      }
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
