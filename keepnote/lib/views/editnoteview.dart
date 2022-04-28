@@ -44,13 +44,14 @@ class _EditNoteViewState extends State<EditNoteView> {
                     uniqueID: widget.note!.uniqueID);
                 await NotesDatabase.instance.updateNote(newNote);
                 Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => Home()));
+                    context, MaterialPageRoute(builder: (context) => const Home
+                  ()));
               },
-              icon: Icon(Icons.save_outlined))
+              icon: const Icon(Icons.save_outlined))
         ],
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           children: [
             Form(
@@ -60,7 +61,7 @@ class _EditNoteViewState extends State<EditNoteView> {
                 onChanged: (value) {
                   newTitle = value;
                 },
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 25,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
@@ -76,7 +77,7 @@ class _EditNoteViewState extends State<EditNoteView> {
                         color: Colors.grey.withOpacity(0.8))),
               ),
             ),
-            Container(
+            SizedBox(
                 height: 300,
                 child: Form(
                   child: TextFormField(
@@ -88,7 +89,7 @@ class _EditNoteViewState extends State<EditNoteView> {
                     keyboardType: TextInputType.multiline,
                     minLines: 50,
                     maxLines: null,
-                    style: TextStyle(fontSize: 17, color: Colors.white),
+                    style: const TextStyle(fontSize: 17, color: Colors.white),
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         focusedBorder: InputBorder.none,

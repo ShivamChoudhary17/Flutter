@@ -31,7 +31,8 @@ class _NoteViewState extends State<NoteView> {
               onPressed: () async {
                 await NotesDatabase.instance.pinNote(widget.note);
                 Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => Home()));
+                    context, MaterialPageRoute(builder: (context) => const Home
+                  ()));
               },
               icon: Icon(
                   widget.note!.pin ? Icons.push_pin : Icons.push_pin_outlined)),
@@ -40,7 +41,8 @@ class _NoteViewState extends State<NoteView> {
               onPressed: () async {
                 await NotesDatabase.instance.archNote(widget.note);
                 Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => Home()));
+                    context, MaterialPageRoute(builder: (context) => const Home
+                  ()));
               },
               icon: Icon(widget.note!.isArchive
                   ? Icons.archive
@@ -50,9 +52,10 @@ class _NoteViewState extends State<NoteView> {
               onPressed: () async {
                 await NotesDatabase.instance.deleteNote(widget.note);
                 Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => Home()));
+                    context, MaterialPageRoute(builder: (context) => const Home
+                  ()));
               },
-              icon: Icon(Icons.delete_forever_outlined)),
+              icon: const Icon(Icons.delete_forever_outlined)),
           IconButton(
               splashRadius: 17,
               onPressed: () {
@@ -61,7 +64,7 @@ class _NoteViewState extends State<NoteView> {
                     MaterialPageRoute(
                         builder: (context) => EditNoteView(note: widget.note)));
               },
-              icon: Icon(Icons.edit_outlined))
+              icon: const Icon(Icons.edit_outlined))
         ],
       ),
       body: SingleChildScrollView(
